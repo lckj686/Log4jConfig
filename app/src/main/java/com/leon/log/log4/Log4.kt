@@ -30,24 +30,23 @@ object Log4 {
         this.application = application
         val root = application.packageName
 
-
         val logPath = PathUtil.getAppLogPath(application)
         Log.i("path", logPath)
 
         val fileName = "log4j.txt"
 
         val logConfigurator = LogConfigurator(logPath + fileName)
-        logConfigurator.setLevel(root, Level.ALL)
-        logConfigurator.filePattern = "%d{yyyy:MM:dd HH:mm:ss} -%p, %m%n"//格式
+        logConfigurator.setLevel(root, Level.ALL)//设置等级
+        logConfigurator.filePattern = "%d{yyyy:MM:dd HH:mm:ss} -%p, %m%n"//输出格式
         logConfigurator.maxBackupSize = 3//备份数量
-        logConfigurator.maxFileSize = (1024 * 1024 * 2).toLong()//2m
+        logConfigurator.maxFileSize = (1024 * 1024 * 2).toLong()//每个输出文件设置为 2m
         logConfigurator.isImmediateFlush = true//追加
         logConfigurator.configure()
     }
 
     private fun appender(fileName: String): Appender {
         val rollingFileAppender: RollingFileAppender
-        val fileLayout = PatternLayout("%m%n")
+        val fileLayout = PatternLayout("%m%n")//输出格式
 
         try {
             rollingFileAppender = RollingFileAppender(fileLayout, PathUtil.getAppLogPath(application) + fileName)
