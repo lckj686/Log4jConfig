@@ -4,8 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import com.leon.log.log4.Log4
-import com.leon.log.log4.Logger4
-import com.leon.log.log4.LoggerUtil2
 
 class MainActivity : AppCompatActivity() {
 
